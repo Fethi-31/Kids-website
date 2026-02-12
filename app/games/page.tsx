@@ -4,8 +4,8 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 export default function GamesMenuPage() {
   const games = [
     { title: "Math Quiz", desc: "Fast questions + score + streak", href: "/games/math" },
-    { title: "Reading (coming soon)", desc: "Word matching and comprehension", href: "/games/reading" },
-    { title: "Science (coming soon)", desc: "Fun facts + quick quizzes", href: "/games/science" },
+    { title: "Reading", desc: "Word matching and comprehension", href: "/games/reading" },
+    { title: "Science", desc: "Fun facts + quick quizzes", href: "/games/science" },
   ]
 
   return (
