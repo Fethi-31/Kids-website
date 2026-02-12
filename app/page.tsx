@@ -1,8 +1,9 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
 
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -20,27 +21,18 @@ interface Subject {
 
 export default function HomePage() {
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null)
-  
-  const handleSubjectClick = (subjectId: string, subjectName: string) => {
-    console.log("[v0] Subject clicked:", subjectName)
+  const router = useRouter()
+
+  // ✅ Go to lessons page and pass selected subject as query
+  const handleSubjectClick = (subjectId: string) => {
     setSelectedSubject(subjectId)
-    alert(`Let's learn ${subjectName}! 🎓`)
+    router.push(`/lessons?subject=${subjectId}`)
   }
-  
-  const handleStartLearning = () => {
-    console.log("[v0] Start Learning button clicked")
-    alert("Let's start your learning journey! 🚀")
-  }
-  
-  const handlePlayGames = () => {
-    console.log("[v0] Play Games button clicked")
-    alert("Time for some fun educational games! 🎮")
-  }
-  
-  const handleChallenge = () => {
-    console.log("[v0] Daily Challenge button clicked")
-    alert("Let's solve today's challenge! 💪")
-  }
+
+  // ✅ Navigate instead of alert
+  const handleStartLearning = () => router.push("/lessons")
+  const handlePlayGames = () => router.push("/games")
+  const handleChallenge = () => router.push("/progress")
 
   const subjects: Subject[] = [
     {
@@ -49,7 +41,7 @@ export default function HomePage() {
       icon: <Brain className="w-8 h-8" />,
       color: "bg-primary text-primary-foreground",
       progress: 65,
-      lessons: 24
+      lessons: 24,
     },
     {
       id: "science",
@@ -57,7 +49,7 @@ export default function HomePage() {
       icon: <Rocket className="w-8 h-8" />,
       color: "bg-secondary text-secondary-foreground",
       progress: 45,
-      lessons: 18
+      lessons: 18,
     },
     {
       id: "reading",
@@ -65,7 +57,7 @@ export default function HomePage() {
       icon: <BookOpen className="w-8 h-8" />,
       color: "bg-accent text-accent-foreground",
       progress: 80,
-      lessons: 32
+      lessons: 32,
     },
     {
       id: "art",
@@ -73,7 +65,7 @@ export default function HomePage() {
       icon: <Palette className="w-8 h-8" />,
       color: "bg-chart-4 text-white",
       progress: 30,
-      lessons: 15
+      lessons: 15,
     },
     {
       id: "music",
@@ -81,14 +73,14 @@ export default function HomePage() {
       icon: <Music className="w-8 h-8" />,
       color: "bg-chart-5 text-white",
       progress: 55,
-      lessons: 20
-    }
+      lessons: 20,
+    },
   ]
 
   const achievements = [
     { title: "5 Day Streak!", icon: <Star className="w-5 h-5" />, color: "text-yellow-500" },
     { title: "Math Master", icon: <Trophy className="w-5 h-5" />, color: "text-orange-500" },
-    { title: "Speed Reader", icon: <Sparkles className="w-5 h-5" />, color: "text-blue-500" }
+    { title: "Speed Reader", icon: <Sparkles className="w-5 h-5" />, color: "text-blue-500" },
   ]
 
   return (
@@ -102,13 +94,27 @@ export default function HomePage() {
             </div>
             <h1 className="text-2xl font-bold">KidsLearn</h1>
           </div>
+
+          {/* ✅ Real links */}
           <nav className="hidden md:flex gap-6">
-            <a href="#" className="text-foreground hover:text-primary font-medium transition-colors">Home</a>
-            <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Lessons</a>
-            <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Games</a>
-            <a href="#" className="text-muted-foreground hover:text-primary font-medium transition-colors">Progress</a>
+            <Link href="/" className="text-foreground hover:text-primary font-medium transition-colors">
+              Home
+            </Link>
+            <Link href="/lessons" className="text-muted-foreground hover:text-primary font-medium transition-colors">
+              Lessons
+            </Link>
+            <Link href="/games" className="text-muted-foreground hover:text-primary font-medium transition-colors">
+              Games
+            </Link>
+            <Link href="/progress" className="text-muted-foreground hover:text-primary font-medium transition-colors">
+              Progress
+            </Link>
           </nav>
-          <Button className="rounded-full">My Profile</Button>
+
+          {/* ✅ Profile navigates */}
+          <Button className="rounded-full" onClick={() => router.push("/profile")}>
+            My Profile
+          </Button>
         </div>
       </header>
 
@@ -120,17 +126,22 @@ export default function HomePage() {
               Welcome Back!
             </Badge>
             <h2 className="text-4xl md:text-6xl font-bold text-balance">
-              Ready to Learn Something{" "}
-              <span className="text-primary">Amazing</span> Today?
+              Ready to Learn Something <span className="text-primary">Amazing</span> Today?
             </h2>
             <p className="text-xl text-muted-foreground text-balance">
               Explore fun lessons, play educational games, and become a super learner!
             </p>
+
             <div className="flex flex-wrap gap-4 justify-center pt-4">
               <Button size="lg" className="rounded-full text-lg px-8" onClick={handleStartLearning}>
                 Start Learning
               </Button>
-              <Button size="lg" variant="outline" className="rounded-full text-lg px-8 bg-transparent" onClick={handlePlayGames}>
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-full text-lg px-8 bg-transparent"
+                onClick={handlePlayGames}
+              >
                 Play Games
               </Button>
             </div>
@@ -159,13 +170,13 @@ export default function HomePage() {
             <h3 className="text-3xl md:text-4xl font-bold mb-3">Choose Your Subject</h3>
             <p className="text-lg text-muted-foreground">Pick a subject and start your learning adventure!</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {subjects.map((subject) => (
-              <Card 
+              <Card
                 key={subject.id}
                 className="cursor-pointer transition-all hover:scale-105 hover:shadow-lg overflow-hidden"
-                onClick={() => handleSubjectClick(subject.id, subject.name)}
+                onClick={() => handleSubjectClick(subject.id)}
               >
                 <CardHeader>
                   <div className="flex items-center justify-between mb-4">
@@ -177,9 +188,7 @@ export default function HomePage() {
                     </Badge>
                   </div>
                   <CardTitle className="text-2xl">{subject.name}</CardTitle>
-                  <CardDescription className="text-base">
-                    Continue your learning journey
-                  </CardDescription>
+                  <CardDescription className="text-base">Continue your learning journey</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
@@ -204,9 +213,11 @@ export default function HomePage() {
               <CardHeader>
                 <div className="flex items-center gap-3 mb-2">
                   <Trophy className="w-8 h-8" />
-                  <Badge variant="secondary" className="rounded-full">Daily Challenge</Badge>
+                  <Badge variant="secondary" className="rounded-full">
+                    Daily Challenge
+                  </Badge>
                 </div>
-                <CardTitle className="text-3xl">Complete Today's Math Challenge!</CardTitle>
+                <CardTitle className="text-3xl">Complete Today&apos;s Math Challenge!</CardTitle>
                 <CardDescription className="text-primary-foreground/80 text-base">
                   Solve 10 problems and earn bonus stars
                 </CardDescription>
@@ -234,7 +245,7 @@ export default function HomePage() {
             <h3 className="text-3xl md:text-4xl font-bold mb-3">Did You Know?</h3>
             <p className="text-lg text-muted-foreground">Learn something new every day!</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <Card className="text-center">
               <CardHeader>
@@ -255,7 +266,7 @@ export default function HomePage() {
                 </div>
                 <CardTitle className="text-xl">Brain Fact</CardTitle>
                 <CardDescription className="text-base leading-relaxed">
-                  Your brain uses 20% of your body's energy but weighs only 2% of your body!
+                  Your brain uses 20% of your body&apos;s energy but weighs only 2% of your body!
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -267,7 +278,7 @@ export default function HomePage() {
                 </div>
                 <CardTitle className="text-xl">Fun Fact</CardTitle>
                 <CardDescription className="text-base leading-relaxed">
-                  Honey never spoils! Archaeologists found 3000-year-old honey that's still edible!
+                  Honey never spoils! Archaeologists found 3000-year-old honey that&apos;s still edible!
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -285,9 +296,7 @@ export default function HomePage() {
               </div>
               <span className="font-bold text-lg">KidsLearn</span>
             </div>
-            <p className="text-sm text-muted-foreground">
-              Making learning fun for kids everywhere!
-            </p>
+            <p className="text-sm text-muted-foreground">Making learning fun for kids everywhere!</p>
           </div>
         </div>
       </footer>
