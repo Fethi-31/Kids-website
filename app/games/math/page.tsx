@@ -13,7 +13,7 @@ function makeMathQuestion(level: number): Question {
   const op = ops[Math.floor(Math.random() * ops.length)]
 
   let a = 0
-  let b = 0
+  let b = 0 
   let correct = 0
   let prompt = ""
 
