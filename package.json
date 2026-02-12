@@ -1,5 +1,5 @@
 {
-  "name": "Educational Kids Website",
+  "name": "educational kids website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -22,7 +22,7 @@
     "tailwindcss-animate": "^1.0.7",
     "postcss": "^8.4.35",
     "autoprefixer": "^10.4.17"
-  },
+  }
   
   "devDependencies": {
     "typescript": "^5.0.0",
