@@ -20,7 +20,16 @@
     "@tailwindcss/postcss": "^4.0.0",
     "autoprefixer": "^10.4.0",
     "@vercel/analytics": "latest",
-    "lucide-react": "^0.400.0"
+    "lucide-react": "^0.400.0",
+    "@radix-ui/react-progress": "^1.0.3",
+
+"@radix-ui/react-slot": "^1.0.2",
+
+"lucide-react": "^0.284.0",
+
+"clsx": "^2.0.0",
+
+"tailwind-merge": "^1.14.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
