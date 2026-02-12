@@ -9,27 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "latest",
-    "react-dom": "^19.0.0",
-    "next": "latest",
-    "@radix-ui/react-slot": "^1.1.0",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
-    "tailwind-merge": "^2.3.0",
-    "tailwindcss": "^4.0.0",
-    "@tailwindcss/postcss": "^4.0.0",
-    "autoprefixer": "^10.4.0",
-    "@vercel/analytics": "latest",
-    "lucide-react": "^0.400.0",
     "@radix-ui/react-progress": "^1.0.3",
-
-"@radix-ui/react-slot": "^1.0.2",
-
-"lucide-react": "^0.284.0",
-
-"clsx": "^2.0.0",
-
-"tailwind-merge": "^1.14.0"
+    "@radix-ui/react-slot": "^1.0.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "lucide-react": "^0.284.0",
+    "next": "14.1.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "tailwind-merge": "^2.0.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
