@@ -12,7 +12,7 @@ type Question = {
   prompt: string
   choices: string[]
   correctIndex: number
-}
+} 
 
 function makeMathQuestion(level: number): Question {
   // level controls difficulty a bit
